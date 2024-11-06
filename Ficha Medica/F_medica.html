@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Médica</title>
+    <style>
+        .pass { color: green; }
+        .fail { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Ficha Médica</h2>
+
+    <form id="ficha-medica">
+        <label for="cpf">CPF (somente números):</label>
+        <input id="cpf" type="text" maxlength="11"><br><br>
+
+        <label for="nome">Nome Completo:</label>
+        <input id="nome" type="text"><br><br>
+
+        <label for="sintomas">Sintomas:</label><br>
+        <textarea id="sintomas" rows="4" cols="50"></textarea><br><br>
+
+        <button type="button" onclick="verificarFichaMedica()">Enviar Ficha Médica</button>
+    </form>
+
+    <h3>Resultados:</h3>
+    <div id="resultados"></div>
+
+    <script>
+      
+        function verificarFichaMedica() {
+       
+            const resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '';
+
+           
+            const cpf = document.getElementById('cpf').value;
+            const nome = document.getElementById('nome').value;
+            const sintomas = document.getElementById('sintomas').value;
+
+           
+            if (/^\d{11}$/.test(cpf)) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ CPF válido</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ CPF inválido (deve conter 11 dígitos )</p>';
+            }
+
+           
+            if (nome.length >= 3) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ Nome válido</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Nome inválido (mínimo de 3 letras)</p>';
+            }
+
+          
+            if (sintomas.trim() !== '') {
+                if (sintomas.length <= 150) {
+                    resultadosDiv.innerHTML += '<p class="pass">✔️ Sintomas informados</p>';
+                } else {
+                    resultadosDiv.innerHTML += '<p class="fail">❌ Sintomas excedem o limite de 150 caracteres</p>';
+                }
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Sintomas não informados</p>';
+            }
+        }
+    </script>
+</body>
+</html>
