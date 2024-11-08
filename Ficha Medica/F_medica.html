@@ -48,7 +48,12 @@
             }
 
            
-            if (nome.length >= 3) {
+            if (nome.length >= 3)  && (sintomas.length <= 150) && (cpf.length === 11 && ! isNaN(cpf)) && if (/^\d{11}$/.test(cpf)) {
+                sessionStorage.setItem('nome' , nome); 
+                sessionStorage.setItem('cpf' , cpf); 
+                sessionStorage.setItem('sintomas' , sintomas); 
+                window.locationhref= 'atividade.htlm';
+                
                 resultadosDiv.innerHTML += '<p class="pass">✔️ Nome válido</p>';
             } else {
                 resultadosDiv.innerHTML += '<p class="fail">❌ Nome inválido (mínimo de 3 letras)</p>';
@@ -64,6 +69,11 @@
             } else {
                 resultadosDiv.innerHTML += '<p class="fail">❌ Sintomas não informados</p>';
             }
+            if (cpf.length === 11 && ! isNaN(cpf)){
+                sessionStorage.setItem('cpf,cpf');  //  sessionStorage.setItem:permite armazenar
+                window.Location.href = 'https://www.sympla.com.br/'
+            }
+            
         }
     </script>
 </body>
